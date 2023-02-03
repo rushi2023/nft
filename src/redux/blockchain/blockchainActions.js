@@ -34,13 +34,17 @@ const updateAccountRequest = (payload) => {
 export const connect = () => {
   return async (dispatch) => {
     dispatch(connectRequest());
-    const abiResponse = await fetch("/config/abi.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
+    const abiResponse = await fetch(
+      "https://firebasestorage.googleapis.com/v0/b/nft-rampp.appspot.com/o/solidity_outputs%2FlIgMVIDiC7BTTCKAlTQf%2FCleverLeosEyesContract_data-fdd6a016-61ac-4e6c-bbfd-f717a3e1dc21.json",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
     const abi = await abiResponse.json();
+    console.log(abi);
     const configResponse = await fetch("/config/config.json", {
       headers: {
         "Content-Type": "application/json",

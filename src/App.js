@@ -4,19 +4,19 @@ import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
-
+import "./styles/reset.css";
 const truncate = (input, len) =>
   input.length > len ? `${input.substring(0, len)}...` : input;
 
 export const StyledButton = styled.button`
-  padding: 10px;
-  border-radius: 50px;
+  border-radius: 7px;
   border: none;
-  background-color: var(--secondary);
+  background-color: black;
   padding: 10px;
+  font-size: 16px;
   font-weight: bold;
   color: var(--secondary-text);
-  width: 100px;
+  width: 250px;
   cursor: pointer;
   box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
   -webkit-box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
@@ -30,14 +30,14 @@ export const StyledButton = styled.button`
 
 export const StyledRoundButton = styled.button`
   padding: 10px;
-  border-radius: 100%;
+  border-radius: 10px;
   border: none;
-  background-color: var(--primary);
+  background-color: black;
   padding: 10px;
   font-weight: bold;
   font-size: 15px;
   color: var(--primary-text);
-  width: 30px;
+  width: 300px;
   height: 30px;
   cursor: pointer;
   display: flex;
@@ -55,7 +55,7 @@ export const StyledRoundButton = styled.button`
 
 export const ResponsiveWrapper = styled.div`
   display: flex;
-  flex: 1;
+  flex: 2;
   flex-direction: column;
   justify-content: stretched;
   align-items: stretched;
@@ -67,25 +67,25 @@ export const ResponsiveWrapper = styled.div`
 
 export const StyledLogo = styled.img`
   width: 200px;
-  @media (min-width: 767px) {
-    width: 300px;
-  }
+
   transition: width 0.5s;
   transition: height 0.5s;
 `;
 
 export const StyledImg = styled.img`
   box-shadow: 0px 5px 11px 2px rgba(0, 0, 0, 0.7);
-  border: 4px dashed var(--secondary);
-  background-color: var(--accent);
-  border-radius: 100%;
+  background-color: black;
+  border-radius: 5px;
   width: 200px;
+
   @media (min-width: 900px) {
     width: 250px;
   }
   @media (min-width: 1000px) {
-    width: 300px;
+    width: 20rem;
+    hight: 20rem;
   }
+
   transition: width 0.5s;
 `;
 
@@ -99,6 +99,7 @@ function App() {
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
+
   const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
   const [mintAmount, setMintAmount] = useState(1);
   const [CONFIG, SET_CONFIG] = useState({
@@ -195,37 +196,60 @@ function App() {
 
   return (
     <s.Screen>
-      <s.Container
-        flex={1}
-        ai={"center"}
-        style={{ padding: 24, backgroundColor: "var(--primary)" }}
-        image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
-      >
-        <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
+      <s.Container flex={1} ai={"center"}>
+        <p className="header">This website is in testnet mode currently.</p>
         <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
-          <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg alt={"example"} src={"/config/images/example.gif"} />
-          </s.Container>
-          <s.SpacerLarge />
           <s.Container
-            flex={2}
+            flex={1}
             jc={"center"}
             ai={"center"}
             style={{
-              backgroundColor: "var(--accent)",
-              padding: 24,
-              borderRadius: 24,
-              border: "4px dashed var(--secondary)",
-              boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
+              zIndex: -1,
             }}
           >
+            <img
+              alt={"example"}
+              src={
+                "https://bafybeihx6c7hq2htf6h74ccotrldndktbishdjdczttj5tc6ycqzp7fz5e.ipfs.nftstorage.link/1.png"
+              }
+              className="backgroundImg"
+            />
+            <StyledImg
+              alt={"example"}
+              src={
+                "https://bafybeihx6c7hq2htf6h74ccotrldndktbishdjdczttj5tc6ycqzp7fz5e.ipfs.nftstorage.link/1.png"
+              }
+              className="imgCenter"
+            />
+          </s.Container>
+
+          <s.Container flex={1} jc={"center"} ai={"center"}>
+            <s.TextTitle
+              className="title"
+              style={{
+                fontSize: "4.5rem",
+                color: "rgb(35, 45, 59)",
+              }}
+            >
+              Clever Leos Eyes
+            </s.TextTitle>
+            <s.TextTitle
+              style={{
+                marginTop: "-20px",
+                textAlign: "center",
+                fontSize: "1.125rem",
+                fontWeight: 600,
+                color: "rgba(75, 85, 99)",
+              }}
+            >
+              Clever Eyes of Lions
+            </s.TextTitle>
             <s.TextTitle
               style={{
                 textAlign: "center",
-                fontSize: 50,
-                fontWeight: "bold",
-                color: "var(--accent-text)",
+                fontSize: 40,
+                fontWeight: 800,
               }}
             >
               {data.totalSupply} / {CONFIG.MAX_SUPPLY}
@@ -233,24 +257,19 @@ function App() {
             <s.TextDescription
               style={{
                 textAlign: "center",
-                color: "var(--primary-text)",
+                fontWeight: 900,
+                fontSize: 15,
               }}
             >
-              <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK}>
-                {truncate(CONFIG.CONTRACT_ADDRESS, 15)}
-              </StyledLink>
+              MINTED
             </s.TextDescription>
             <s.SpacerSmall />
             {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
               <>
-                <s.TextTitle
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
+                <s.TextTitle style={{ textAlign: "center" }}>
                   The sale has ended.
                 </s.TextTitle>
-                <s.TextDescription
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
+                <s.TextDescription style={{ textAlign: "center" }}>
                   You can still find {CONFIG.NFT_NAME} on
                 </s.TextDescription>
                 <s.SpacerSmall />
@@ -260,16 +279,12 @@ function App() {
               </>
             ) : (
               <>
-                <s.TextTitle
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
+                <s.TextTitle style={{ textAlign: "center" }}>
                   1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "}
                   {CONFIG.NETWORK.SYMBOL}.
                 </s.TextTitle>
                 <s.SpacerXSmall />
-                <s.TextDescription
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
+                <s.TextDescription style={{ textAlign: "center" }}>
                   Excluding gas fees.
                 </s.TextDescription>
                 <s.SpacerSmall />
@@ -279,7 +294,6 @@ function App() {
                     <s.TextDescription
                       style={{
                         textAlign: "center",
-                        color: "var(--accent-text)",
                       }}
                     >
                       Connect to the {CONFIG.NETWORK.NAME} network
@@ -292,7 +306,7 @@ function App() {
                         getData();
                       }}
                     >
-                      CONNECT
+                      Connect Wallet
                     </StyledButton>
                     {blockchain.errorMsg !== "" ? (
                       <>
@@ -300,7 +314,6 @@ function App() {
                         <s.TextDescription
                           style={{
                             textAlign: "center",
-                            color: "var(--accent-text)",
                           }}
                         >
                           {blockchain.errorMsg}
@@ -313,7 +326,6 @@ function App() {
                     <s.TextDescription
                       style={{
                         textAlign: "center",
-                        color: "var(--accent-text)",
                       }}
                     >
                       {feedback}
@@ -334,7 +346,6 @@ function App() {
                       <s.TextDescription
                         style={{
                           textAlign: "center",
-                          color: "var(--accent-text)",
                         }}
                       >
                         {mintAmount}
@@ -370,38 +381,8 @@ function App() {
             <s.SpacerMedium />
           </s.Container>
           <s.SpacerLarge />
-          <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg
-              alt={"example"}
-              src={"/config/images/example.gif"}
-              style={{ transform: "scaleX(-1)" }}
-            />
-          </s.Container>
         </ResponsiveWrapper>
         <s.SpacerMedium />
-        <s.Container jc={"center"} ai={"center"} style={{ width: "70%" }}>
-          <s.TextDescription
-            style={{
-              textAlign: "center",
-              color: "var(--primary-text)",
-            }}
-          >
-            Please make sure you are connected to the right network (
-            {CONFIG.NETWORK.NAME} Mainnet) and the correct address. Please note:
-            Once you make the purchase, you cannot undo this action.
-          </s.TextDescription>
-          <s.SpacerSmall />
-          <s.TextDescription
-            style={{
-              textAlign: "center",
-              color: "var(--primary-text)",
-            }}
-          >
-            We have set the gas limit to {CONFIG.GAS_LIMIT} for the contract to
-            successfully mint your NFT. We recommend that you don't lower the
-            gas limit.
-          </s.TextDescription>
-        </s.Container>
       </s.Container>
     </s.Screen>
   );

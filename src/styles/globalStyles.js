@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 // Used for wrapping a page component
 export const Screen = styled.div`
-  background-color: var(--primary);
-  background-image: ${({ image }) => (image ? `url(${image})` : "none")};
   background-size: cover;
   background-position: center;
   width: 100%;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  font-family: BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 `;
 
 // Used for providing space between components
@@ -43,22 +43,19 @@ export const Container = styled.div`
   flex-direction: ${({ fd }) => (fd ? fd : "column")};
   justify-content: ${({ jc }) => (jc ? jc : "flex-start")};
   align-items: ${({ ai }) => (ai ? ai : "flex-start")};
-  background-color: ${({ test }) => (test ? "pink" : "none")};
-  width: 100%;
+
   background-image: ${({ image }) => (image ? `url(${image})` : "none")};
   background-size: cover;
   background-position: center;
 `;
 
 export const TextTitle = styled.p`
-  color: var(--primary-text);
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 800;
   line-height: 1.6;
 `;
 
 export const TextSubTitle = styled.p`
-  color: var(--primary-text);
   font-size: 18px;
   line-height: 1.6;
 `;
