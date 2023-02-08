@@ -1,15 +1,15 @@
 {
-  "CONTRACT_ADDRESS": "0x7d3d05961f9a7e8f12c759e446da60cfc6a7488c",
-  "SCAN_LINK": "https://goerli.etherscan.io/address/0x7d3d05961f9a7e8f12c759e446da60cfc6a7488c",
+  "CONTRACT_ADDRESS": "0x7d3d05961F9a7e8F12c759e446dA60cfC6A7488C",
+  "SCAN_LINK": "https://goerli.etherscan.io/token/0x7d3d05961F9a7e8F12c759e446dA60cfC6A7488C2",
   "NETWORK": {
-    "NAME": "GoerliETH",
-    "SYMBOL": "GoerliETH",
+    "NAME": "Gorelli",
+    "SYMBOL": "Ether",
     "ID": 5
   },
   "NFT_NAME": "Demonic Eyes V2.0",
-  "SYMBOL": "DVE2",
+  "SYMBOL": "DEV2",
   "MAX_SUPPLY": 400,
-  "WEI_COST": 5000000000000000,
+  "WEI_COST": 50000000000000000,
   "DISPLAY_COST": 0.05,
   "GAS_LIMIT": 285000,
   "MARKETPLACE": "Opeansea",
