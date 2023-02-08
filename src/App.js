@@ -5,8 +5,6 @@ import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
 import "./styles/reset.css";
-const truncate = (input, len) =>
-  input.length > len ? `${input.substring(0, len)}...` : input;
 
 export const StyledButton = styled.button`
   border-radius: 7px;
@@ -97,6 +95,7 @@ export const StyledLink = styled.a`
 function App() {
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
+
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
 
@@ -126,16 +125,17 @@ function App() {
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalCostWei = String(cost * mintAmount);
     let totalGasLimit = String(gasLimit * mintAmount);
-    // console.log("Cost: ", totalCostWei);
-    // console.log("Gas limit: ", totalGasLimit);
+
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
+    console.log("Addewss", blockchain.account);
     blockchain.smartContract.methods
-      .transferd("0x497fe03ba1dabf3b391079e8f69eb178243a736b")
+      .mint(mintAmount)
       .send({
+        from: blockchain.account,
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
-        from: blockchain.account,
+
         value: totalCostWei,
       })
       .once("error", (err) => {
@@ -267,11 +267,7 @@ function App() {
                 fontWeight: 900,
                 fontSize: 15,
               }}
-            >
-              <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK}>
-                {truncate(CONFIG.CONTRACT_ADDRESS, 15)}
-              </StyledLink>
-            </s.TextDescription>
+            ></s.TextDescription>
             <s.SpacerSmall />
             {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
               <>

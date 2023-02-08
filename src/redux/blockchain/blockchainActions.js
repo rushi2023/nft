@@ -67,6 +67,7 @@ export const connect = () => {
           );
           dispatch(
             connectSuccess({
+              account: accounts[0],
               smartContract: SmartContractObj,
               web3: web3,
             })
