@@ -211,14 +211,14 @@ function App() {
             <img
               alt={"example"}
               src={
-                "https://bafybeihx6c7hq2htf6h74ccotrldndktbishdjdczttj5tc6ycqzp7fz5e.ipfs.nftstorage.link/1.png"
+                "https://i.seadn.io/gcs/files/5e1e98a0f4df1b0cda3ae6cb56d5e412.png?auto=format&w=1000"
               }
               className="backgroundImg"
             />
             <StyledImg
               alt={"example"}
               src={
-                "https://bafybeihx6c7hq2htf6h74ccotrldndktbishdjdczttj5tc6ycqzp7fz5e.ipfs.nftstorage.link/1.png"
+                "https://i.seadn.io/gcs/files/5e1e98a0f4df1b0cda3ae6cb56d5e412.png?auto=format&w=1000"
               }
               className="imgCenter"
             />
